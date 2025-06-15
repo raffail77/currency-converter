@@ -5,7 +5,7 @@ from app.views.converter import ConverterView
 
 def main():
     root = tk.Tk()
-    root.title("Currency Converter")
+    root.title("Mohid")
     root.geometry("400x300")
 
     app = ConverterView(root)
