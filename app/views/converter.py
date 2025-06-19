@@ -6,7 +6,7 @@ from app.models.currency_data import SUPPORTED_CURRENCIES
 
 class ConverterView(tk.Frame):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, bg="#f0f4f8", padx=20, pady=20)
 
         self.amount_var = tk.StringVar()
         self.from_currency = tk.StringVar(value='USD')
@@ -16,20 +16,25 @@ class ConverterView(tk.Frame):
         self.build_ui()
 
     def build_ui(self):
-        tk.Label(self, text="Amount:").pack(pady=(20, 5))
-        tk.Entry(self, textvariable=self.amount_var).pack()
+        # Amount Label and Entry
+        tk.Label(self, text="Amount:", bg="#f0f4f8", font=("Segoe UI", 11)).pack(anchor="w", pady=(10, 2))
+        ttk.Entry(self, textvariable=self.amount_var, font=("Segoe UI", 11)).pack(fill='x', pady=(0, 10))
 
-        tk.Label(self, text="From:").pack(pady=(10, 5))
-        from_menu = ttk.Combobox(self, textvariable=self.from_currency, values=SUPPORTED_CURRENCIES, state="readonly")
-        from_menu.pack()
+        # From Currency
+        tk.Label(self, text="From:", bg="#f0f4f8", font=("Segoe UI", 11)).pack(anchor="w", pady=(10, 2))
+        from_menu = ttk.Combobox(self, textvariable=self.from_currency, values=SUPPORTED_CURRENCIES, state="readonly", font=("Segoe UI", 10))
+        from_menu.pack(fill='x', pady=(0, 10))
 
-        tk.Label(self, text="To:").pack(pady=(10, 5))
-        to_menu = ttk.Combobox(self, textvariable=self.to_currency, values=SUPPORTED_CURRENCIES, state="readonly")
-        to_menu.pack()
+        # To Currency
+        tk.Label(self, text="To:", bg="#f0f4f8", font=("Segoe UI", 11)).pack(anchor="w", pady=(10, 2))
+        to_menu = ttk.Combobox(self, textvariable=self.to_currency, values=SUPPORTED_CURRENCIES, state="readonly", font=("Segoe UI", 10))
+        to_menu.pack(fill='x', pady=(0, 10))
 
-        tk.Button(self, text="Convert", command=self.convert).pack(pady=15)
+        # Convert Button
+        ttk.Button(self, text="Convert", command=self.convert).pack(pady=15)
 
-        tk.Label(self, textvariable=self.result_var, font=("Arial", 14, "bold")).pack(pady=10)
+        # Result Label
+        tk.Label(self, textvariable=self.result_var, font=("Segoe UI", 14, "bold"), bg="#f0f4f8", fg="#007acc").pack(pady=(10, 0))
 
     def convert(self):
         try:
